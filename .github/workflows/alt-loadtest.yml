@@ -1,4 +1,4 @@
-name: load-testing-demo
+name: alt-loadtest
 
 on:
   # push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  load-testing-demo:
+  alt-loadtest:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,10 +23,10 @@ jobs:
 
       - name: Run Load Testing Demo
         uses: azure/load-testing@v1
-          with:
-            loadTestConfigFile: 'config.yaml'
-            loadTestResource: 'lt-app-testing-demo'
-            resourceGroup: 'rg-app-testing-demo'
+        with:
+          loadTestConfigFile: loadtests/config.yaml
+          loadTestResource: 'lt-app-testing-demo'
+          resourceGroup: 'rg-app-testing-demo'
       
       - name: Upload Load Test Results
         uses: actions/upload-artifact@v3
