@@ -88,12 +88,80 @@ GitHub リポジトリからAzDOフォルダをAzure DevOpsへ移してPushす�
 
 ![image.png](images/009.png)
 
+![image.png](images/011.png)
+
 ![image.png](images/010.png)
 
 # 4. GitHub Actions による App Testing 自動化
 
-## 4.1 GitHub Repository を作成
+## 4.1 マネージドIDのOIDC構成
+GitHub ActionsからAzureコンポーネントを操作するために、マネージドID、OIDCを構成する
+マネージドIDへフェデレーション資格情報を登録する
+
+- Azureの情報取得
+Azure Portalより、以下の情報を取得する。
+
+|情報|取得先|
+|--|--|
+|サブスクリプションID|`Azure Portal > サブスクリプション`|
+|テナントID|`Azure Portal > Entra ID`|
+|クライアントID|`Azure Portal > リソースグループ > マネージドID`|
+
+- サブスクリプションID
+
+![image.png](../images/cicd_001.png)
+
+- テナントID
+
+![image.png](../images/cicd_002.png)
+
+- クライアントID
+
+![image.png](../images/cicd_003.png)
+
+- GitHub Repository Secretへ登録
+取得した情報を、GitHub Repository Secret として登録する。
+
+- `Repository > Settings > Secrets and variables > Actions` をクリックし、`New repository secret` ボタンをクリックし、それぞれ登録をする
+
+|シークレット名|値|
+|--|--|
+|AZURE_SUBSCRIPTION_ID|サブスクリプションID|
+|AZURE_TENANT_ID|テナントID|
+|AZURE_CLIENT_ID|クライアントID|
+
+![image.png](../images/cicd_004.png)
+
+
+- `Azure Portal > リソースグループ > マネージドID フェデレーション資格情報> `をクリックし、上で登録した資格情報で構成する
+
+![image.png](../images/cicd_006.png)
+
+- 入力に必要な情報は以下の通り
+
+|要素|値|備考|
+|--|--|--|
+|発行者|`https://token.actions.githubusercontent.com`|編集しなくてOK|
+|組織|―|リポジトリの所属するGitHubの組織|
+|リポジトリ|―|GitHubリポジトリ名|
+|エンティティ|ブランチ|―|
+|ブランチ|main|―|
+|サブジェクト識別子|―|変更しなくてOK|
+|名前|oidc-app-testing|任意の名前でOK|
+|対象ユーザー|api://AzureADTokenExchange|編集しなくてOK|
+
+![image.png](../images/cicd_007.png)
+
+
+## 4.2 GitHub Repository を作成
 任意の Organizationへ、Repositoryを作成する
 
 GitHub リポジトリから作成したリポジトリへ移してPushする
 
+> [!IMPORTANT]
+> testId を Load Test のIDに変更すること
+
+## 4.3 GitHub Actions の作成
+GitHub Actionsは特に手順はなくそのまま起動できるため動作確認をおこなう
+
+![image.png](images/012.png)
