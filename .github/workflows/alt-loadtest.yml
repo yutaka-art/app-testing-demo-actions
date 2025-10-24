@@ -29,7 +29,7 @@ jobs:
           resourceGroup: 'rg-app-testing-demo'
       
       - name: Upload Load Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: loadTestResults
           path: ${{ github.workspace }}/loadTest
