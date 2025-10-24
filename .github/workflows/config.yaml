@@ -1,0 +1,16 @@
+﻿testId: 1d256ccb-fd1e-4b6b-9c61-c5de134d6035
+testPlan: url-test.json
+testType: URL
+engineInstances: 1
+splitAllCSVs: False
+displayName: load-test-demo-001
+description: demo用の簡単なテスト
+autoStop:
+  errorPercentage: 90
+  timeWindow: 60
+  maximumVirtualUsersPerEngine: 5000
+referenceIdentities:
+- kind: KeyVault
+  type: SystemAssigned
+- kind: Metrics
+  type: SystemAssigned
