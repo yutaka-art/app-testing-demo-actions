@@ -6,6 +6,10 @@ on:
   #     - main
   workflow_dispatch:
 
+permissions:
+  id-token: write   # ← OIDC で azure/login を使う場合は必要
+  contents: read
+
 jobs:
   alt-loadtest:
     runs-on: ubuntu-latest
@@ -29,7 +33,12 @@ jobs:
           resourceGroup: 'rg-app-testing-demo'
       
       - name: Upload Load Test Results
-        uses: actions/upload-artifact@v2
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: loadTestResults
-          path: ${{ github.workspace }}/loadTest
+          path: |
+            loadTest/results.zip
+            loadTest/**            # 追加でフォルダ一式を拾いたい場合
+          if-no-files-found: warn   # 生成されていない場合でもワークフローを落とさない
+          # compression-level: 6    # 任意：既定でOK
