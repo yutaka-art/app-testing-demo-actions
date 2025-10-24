@@ -1,0 +1,28 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+variables:
+  serviceConnection: sp-app-testing-demo
+  loadTestResource: lt-app-testing-demo
+  loadTestResourceGroup: rg-app-testing-demo
+  
+stages:
+- stage: LoadTest
+  displayName: Load Test
+  jobs:
+  - job: LoadTest
+    displayName: Load Test
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: AzureLoadTest@1
+      inputs:
+        azureSubscription: sp-app-testing-demo
+        loadTestConfigFile: loadtests/alt-config.yaml
+        resourceGroup: rg-app-testing-demo
+        loadTestResource: lt-app-testing-demo
+  
+    - publish: $(System.DefaultWorkingDirectory)/loadTest
+      artifact: results
