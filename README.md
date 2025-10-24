@@ -165,3 +165,5 @@ GitHub リポジトリから作成したリポジトリへ移してPushする
 GitHub Actionsは特に手順はなくそのまま起動できるため動作確認をおこなう
 
 ![image.png](images/012.png)
+
+![image.png](images/013.png)
