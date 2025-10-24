@@ -109,15 +109,15 @@ Azure Portalより、以下の情報を取得する。
 
 - サブスクリプションID
 
-![image.png](../images/cicd_001.png)
+![image.png](images/cicd_001.png)
 
 - テナントID
 
-![image.png](../images/cicd_002.png)
+![image.png](images/cicd_002.png)
 
 - クライアントID
 
-![image.png](../images/cicd_003.png)
+![image.png](images/cicd_003.png)
 
 - GitHub Repository Secretへ登録
 取得した情報を、GitHub Repository Secret として登録する。
@@ -130,12 +130,12 @@ Azure Portalより、以下の情報を取得する。
 |AZURE_TENANT_ID|テナントID|
 |AZURE_CLIENT_ID|クライアントID|
 
-![image.png](../images/cicd_004.png)
+![image.png](images/cicd_004.png)
 
 
 - `Azure Portal > リソースグループ > マネージドID フェデレーション資格情報> `をクリックし、上で登録した資格情報で構成する
 
-![image.png](../images/cicd_006.png)
+![image.png](images/cicd_006.png)
 
 - 入力に必要な情報は以下の通り
 
@@ -150,7 +150,7 @@ Azure Portalより、以下の情報を取得する。
 |名前|oidc-app-testing|任意の名前でOK|
 |対象ユーザー|api://AzureADTokenExchange|編集しなくてOK|
 
-![image.png](../images/cicd_007.png)
+![image.png](images/cicd_007.png)
 
 
 ## 4.2 GitHub Repository を作成
