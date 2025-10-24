@@ -167,3 +167,8 @@ GitHub Actionsは特に手順はなくそのまま起動できるため動作確
 ![image.png](images/012.png)
 
 ![image.png](images/013.png)
+
+- GitHub Actionsからトリガーされていることがわかる
+
+![image.png](images/014.png)
+
