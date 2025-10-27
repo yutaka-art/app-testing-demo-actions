@@ -9,10 +9,10 @@ resource hostingPlanApp  'Microsoft.Web/serverfarms@2024-11-01' = {
   name: hostingPlanNameApp
   location: location
   sku: {
-    name: 'F1'
-    tier: 'Free'
-    size: 'F1'
-    family: 'F'
+    name: 'B1'
+    tier: 'Basic'
+    size: 'B1'
+    family: 'B'
     capacity: 1
   }
   kind: 'linux'
