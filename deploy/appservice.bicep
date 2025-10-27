@@ -26,6 +26,9 @@ resource appService 'Microsoft.Web/sites@2024-11-01' = {
   name: appServiceName
   location: location
   kind: 'app,linux,container'
+  identity: {
+    type: 'SystemAssigned'
+  }
   properties: {
     serverFarmId: hostingPlanApp.id
     httpsOnly: true
